@@ -1,8 +1,10 @@
 package com.arthurnovaisdev.web_services.config;
 
+import com.arthurnovaisdev.web_services.entities.Category;
 import com.arthurnovaisdev.web_services.entities.Order;
 import com.arthurnovaisdev.web_services.entities.User;
 import com.arthurnovaisdev.web_services.entities.enums.OrderStatus;
+import com.arthurnovaisdev.web_services.repositories.CategoryRepository;
 import com.arthurnovaisdev.web_services.repositories.OrderRepository;
 import com.arthurnovaisdev.web_services.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         User u1 = new User(null, "Arthur Novais", "arthurnovaispeixoto@gmail.com", "99999999", "123456");
         User u2 = new User(null, "Luiza Fernandes", "luizafernandes@gmail.com", "99999998", "123456");
